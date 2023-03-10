@@ -1,13 +1,17 @@
 import React from "react";
-import { BrowserRouter, Routes } from "react-router-dom";
-import LogIn from "../components/logIN/logIn";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LogIn from "../components/logIN/LogIn";
+import Error404 from "../components/error404/Error404";
 
 const Router = () => {
   return (
     <BrowserRouter>
-    <Routes>
-        <Route path='/' element={<LogIn/>}/>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<LogIn />}> </Route>
+
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+
     </BrowserRouter>
   )
 }

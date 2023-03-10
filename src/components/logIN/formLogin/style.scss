@@ -1,0 +1,47 @@
+.form-login {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+
+    & img {
+        height: 30px;
+    }
+
+    & input {
+        border: none;
+        background-color: transparent;
+        color: rgb(0, 0, 0);
+        width: 225px;
+        &::placeholder{
+            color: rgb(0, 0, 0);
+        }
+    }
+
+    &__user {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgb(3, 3, 3);
+        gap: 15px;
+        height: 50px;
+
+    }
+
+    &__pasword {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-bottom: 1px solid rgb(7, 7, 7);
+        height: 50px;
+
+    }
+
+    &__btn{
+        height: 50px;
+        width: 245px;
+        margin-top: 25px;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+}
