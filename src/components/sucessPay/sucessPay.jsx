@@ -1,10 +1,11 @@
-import React from "react";
-import './style.scss'
+import React from 'react'
 
 const SucessPay = () => {
-  <>
-  
-  </>
+  return (
+    <>
+      <h2>sucessPay</h2>
+    </>
+  )
 }
 
 export default SucessPay
