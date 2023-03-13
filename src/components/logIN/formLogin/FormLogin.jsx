@@ -1,51 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { getUsers } from "../../../services/datatUsers";
 import { endpoints } from "../../../services/enpoints";
 import person from '../../assets/icons/person.svg'
 import candado from '../../assets/icons/candado.svg'
 import './style.scss'
 import { useForm } from "react-hook-form";
 import axios from "axios";
-//import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getUser, saveUser } from "../../../services/login";
 
 const FormLogin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onChange" });
-
     const [usersList, setUsersList] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getListUsers = async () => {
             const url = endpoints.user;
             const response = await axios.get(url);
-            console.log(response.data)
             setUsersList(response)
         }
         getListUsers()
     }, [])
 
-    console.log(usersList)
     let authValidation = false;
     const info = usersList.data;
-    console.log(info)
 
     const onSubmit = (e) => {
         const Password = e.password;
         const Name = e.Usuario;
         console.log(Password)
         console.log(Name)
-         if (Name === info[1].user ) {
-           console.log('yessssssss madafaka')
-           localStorage.setItem('usuario', JSON.stringify(info[1])) 
-           validationLogin() 
-         }
+        if (Name === info[1].user) {
+            console.log('yessssssss madafaka')
+            saveUser(info[1])
+            authValidation = true;
+            navigate('/home')
+        } 
     }
-    //console.log(errors);
 
-    const validationLogin = () => {
-        authValidation = true
-        console.log(authValidation)
-        
-     }
+    useEffect(() => {
+        const user = getUser();
+        if (user) {
+          navigate('/home')
+        }
+      }, [])
 
     return (
         <>
