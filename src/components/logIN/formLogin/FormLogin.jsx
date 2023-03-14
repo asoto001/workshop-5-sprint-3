@@ -24,26 +24,33 @@ const FormLogin = () => {
 
     let authValidation = false;
     const info = usersList.data;
-
     const onSubmit = (e) => {
         const Password = e.password;
         const Name = e.Usuario;
         console.log(Password)
         console.log(Name)
-        if (Name === info[1].user) {
-            console.log('yessssssss madafaka')
-            saveUser(info[1])
-            authValidation = true;
-            navigate('/home')
-        } 
+        info.forEach((user) => {
+            if (Name === user.user) {
+                console.log('por fin')
+                authValidation = true;
+                saveUser(user)
+                navigate('/home')
+            }
+        })
+        // if (Name === info[1].user) {
+        //     console.log('yessssssss madafaka')
+        //     saveUser(info[1])
+        //     authValidation = true;
+            
+        // }
     }
 
     useEffect(() => {
         const user = getUser();
         if (user) {
-          navigate('/home')
+            navigate('/home')
         }
-      }, [])
+    }, [])
 
     return (
         <>
